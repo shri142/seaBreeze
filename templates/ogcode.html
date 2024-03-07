@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Graph Generator</title>
+    <!-- Include Plotly library -->
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+    {% include 'menu.html' %}
+
+    <label for="fileInput">Upload CSV File:</label> 
+    <input type="file" id="fileInput">
+
+    <form id="paramForm">
+        <label for="paramsX">Select X-axis Parameter:</label>
+        <select id="paramsX"></select>
+
+        <label for="paramsY">Select Y-axis Parameter:</label>
+        <select id="paramsY"></select>
+
+        <label for="plotType">Select Plot Type:</label>
+        <select id="plotType">
+            <option value="scatter">Scatter Plot</option>
+            <option value="bar">Bar Plot</option>
+            <option value="box">Box Plot</option>
+        </select>
+
+        <button type="button" onclick="generateGraph()">Generate Graph</button>
+    </form>
+
+    <div id="graphContainer">
+        <!-- Display the graph here -->
+    </div>
+
+    <script>
+        let data; // To store the CSV data
+
+        // Event listener for file input change
+        document.getElementById('fileInput').addEventListener('change', function (event) {
+            const file = event.target.files[0];
+            if (file) {
+                // Read the CSV file
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    data = CSVToArray(e.target.result);
+                    populateParamOptions();
+                };
+                reader.readAsText(file);
+            }
+        });
+
+        function populateParamOptions() {
+            const paramsXSelect = document.getElementById('paramsX');
+            const paramsYSelect = document.getElementById('paramsY');
+
+            paramsXSelect.innerHTML = '';
+            paramsYSelect.innerHTML = '';
+
+            if (data.length > 0) {
+                const headerRow = data[0];
+                headerRow.forEach((param, index) => {
+                    const optionX = document.createElement('option');
+                    const optionY = document.createElement('option');
+                    optionX.value = index;
+                    optionY.value = index;
+                    optionX.text = param;
+                    optionY.text = param;
+                    paramsXSelect.add(optionX);
+                    paramsYSelect.add(optionY);
+                });
+            }
+        }
+
+        function generateGraph() {
+            const selectedParamX = document.getElementById('paramsX').value;
+            const selectedParamY = document.getElementById('paramsY').value;
+            const selectedPlotType = document.getElementById('plotType').value;
+
+            if (selectedParamX === selectedParamY) {
+                alert('Please select different parameters for X and Y axes.');
+                return;
+            }
+
+            const xData = data.slice(1).map(row => row[selectedParamX]);
+            const yData = data.slice(1).map(row => row[selectedParamY]);
+
+            let plotData;
+            let layout;
+
+            switch (selectedPlotType) {
+                case 'scatter':
+                    plotData = [{
+                        x: xData,
+                        y: yData,
+                        mode: 'markers',
+                        type: 'scatter',
+                        name: `${data[0][selectedParamX]} vs ${data[0][selectedParamY]}`,
+                    }];
+                    break;
+
+                case 'bar':
+                    plotData = [{
+                        x: xData,
+                        y: yData,
+                        type: 'bar',
+                        name: `${data[0][selectedParamX]} vs ${data[0][selectedParamY]}`,
+                    }];
+                    break;
+                  
+                case 'box':
+                    plotData = [{
+                        x: xData,
+                        y: yData,
+                        type: 'box',
+                        name: `${data[0][selectedParamX]} vs ${data[0][selectedParamY]}`,
+                    }];
+                    break;
+
+                default:
+                    console.error('Invalid plot type');
+                    return;
+            }
+
+            if (!layout) {
+                layout = {
+                    title: `${data[0][selectedParamX]} vs ${data[0][selectedParamY]}`,
+                    xaxis: { title: data[0][selectedParamX] },
+                    yaxis: { title: data[0][selectedParamY] },
+                };
+            }
+
+            Plotly.newPlot('graphContainer', plotData, layout);
+        }
+
+        // Function to convert CSV to 2D array
+        function CSVToArray(str, delimiter = ',') {
+            const rows = str.split('\n');
+            return rows.map(row => row.split(delimiter));
+        }
+    </script>
+    {% include 'footer.html' %}
+</body>
+</html>

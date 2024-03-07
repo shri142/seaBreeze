@@ -1,0 +1,127 @@
+{% load static %}
+{% include 'menu.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <style>
+        .button-container {
+            text-align: right;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+
+       
+    </style>
+
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Include Plotly library -->
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+
+
+	<body>
+
+		
+		<div class="site-content">
+			
+
+			<main class="main-content">
+				<div class="container">
+					<div class="breadcrumb">
+						<a href="index.html">Home</a>
+						<span>Contact</span>
+					</div>
+				</div>
+
+				<div class="fullwidth-block">
+					<div class="container"> 
+						<div class="col-md-5">
+							<div class="contact-details">
+								<div class="map" data-latitude="19.081496508498436" data-longitude="72.88863901900997"></div>
+								<div class="contact-info">
+									<address>
+										<img src="{% static '/images/icon-marker.png' %}" alt="">
+										<p>SeaBreeze INC. <br>
+										2803 Avenue Street, Mumbai</p>
+									</address>
+									
+									<a href="#"><img src="{% static '/images/icon-phone.png' %}" alt="">+91 0123456789</a>
+									<a href="#"><img src="{% static '/images/icon-envelope.png' %}" 
+
+										
+
+										alt="">contact@SeaBreeze.com</a>
+								</div>
+							</div> 
+						</div>
+
+					
+
+						<div class="col-md-6 col-md-offset-1">
+							<h2 class="section-title">Contact us</h2>
+							<p>For any queries, suggestions or bug fixes kindly contact us</p>
+							<form action="https://api.web3forms.com/submit" method="POST" class="contact-form">
+								<input type="hidden" name="access_key" value="26103424-3b80-4c9e-8ee2-a9d5fd919224">
+							
+								<div class="row">
+									<div class="col-md-6"><input type="text" name="name" placeholder="Your name..."  required></div>
+									<div class="col-md-6"><input type="text" name="email" placeholder="Email Addresss..." pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"  required></div>
+								</div>
+							
+								<!-- Add name attributes for other fields as needed -->
+								
+								<textarea name="message" placeholder="Message..."  required></textarea>
+							
+								<div class="text-right">
+									<input type="submit" value="Send message">
+								</div>
+							</form>
+
+						</div>
+					</div>
+				</div>
+				
+			</main> <!-- .main-content -->
+
+			
+		</div>
+		<!-- Include Google Maps API -->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBgmaEmg2jSdEiTAW8kh3kPQbqNQ83zla0&callback=initMap" async defer></script>
+
+<script>
+    function initMap() {
+        var latitude = 19.081496508498436;
+        var longitude = 72.88863901900997;
+
+        var map = new google.maps.Map(document.querySelector('.map'), {
+            center: { lat: latitude, lng: longitude },
+            zoom: 15
+        });
+
+        var marker = new google.maps.Marker({
+            position: { lat: latitude, lng: longitude },
+            map: map,
+            title: 'SeaBreeze INC.'
+        });
+    }
+</script>
+
+		{% include 'footer.html' %}
+		<script src="https://web3forms.com/client/script.js" async defer></script>
+	</body>
+
+</html>
+
+
+
+
+
+
+
+
+

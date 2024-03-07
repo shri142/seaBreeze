@@ -1,0 +1,56 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Footer</title>
+    <link href="{% static 'fonts/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
+
+    <style>
+        /* CSS for footer */
+        .footer {
+            background-color: #34495e; /* Darker blue-gray background */
+            color: #fff; /* Text color */
+            text-align: center;
+            padding: 20px 0; /* Add padding top/bottom */
+            position: absolute; /* Position at the bottom */
+            width: 100%; /* Full width */
+            bottom: 0; /* Stick to the bottom */
+            box-shadow: 0px -2px 5px rgba(0, 0, 0, 0.1); /* Add shadow at top */
+        }
+    </style>
+</head>
+<body>
+    <footer class="site-footer">
+        <div class="container">
+            
+            
+            <div class="row">
+                <div class="col-md-8">
+                    <form action="#" class="subscribe-form">
+                        <input type="text" placeholder="Enter your email to contact us...">
+                        <input type="submit" value="Contact">
+                    </form>
+                </div>
+                
+                <div class="col-md-3 col-md-offset-1" >
+                    <div class="social-links ">
+                        <a href="#"><i class="fa fa-facebook"></i></a>
+                        <a href="#"><i class="fa fa-twitter"></i></a>
+                        <a href="#"><i class="fa fa-google-plus"></i></a>
+                        <!-- <a href="#"><i class="fa fa-pinterest"></i></a> -->
+                    </div>
+                </div>
+            </div>
+            <div style="padding-left: 980px;padding-top: -70px;">
+                <img src="{% static '/images/Graphs/DBIT_Mumbai_Logo-removebg-preview.png' %}" style="height:75px ;width:75px ;padding-right: 5px;">
+                <img src="{% static '/images/Graphs/new.png' %}" style="height:75px ;width:75px ;padding-right: 5px;border-radius: 50%;">
+            
+            </div>
+            <br><br>
+            <p class="colophon "style=" text-align: center;"> Copyright 2023 SeaBreeze. All rights reserved</p>
+        </div>
+    </footer> <!-- .site-footer -->
+</body>
+</html>

@@ -1,0 +1,289 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1">
+		
+		<title>SeaBreeze</title>
+
+		<!-- Loading third party fonts -->
+		<link href="http://fonts.googleapis.com/css?family=Roboto:300,400,700|" rel="stylesheet" type="text/css">
+		<link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+
+
+		<!-- Loading main css file -->
+		<link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+		
+		<!--[if lt IE 9]>
+		<script src="js/ie-support/html5.js"></script>
+		<script src="js/ie-support/respond.js"></script>
+		<![endif]-->
+
+		<!-- content of graph -->
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		
+		<!-- Include Plotly library -->
+		<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+
+		<style>
+			.button-container {
+				text-align: right;
+				position: absolute;
+				top: 10px;
+				right: 10px;
+			}
+
+			.forecast-content .parameter {
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				font-size: 18px;
+				line-height: 1.5;
+  
+         }
+	
+		   
+		</style>
+  
+
+
+	</head>
+
+
+	<body>
+
+		{% include 'menu.html' %}
+		<hr>
+		<br>
+	<!-- <h1>{{dict}}</h1> -->
+	
+	
+
+	
+	
+
+  <!-- /////////////buttons options/ -->
+
+  
+ <div>
+	<div class="main-navigation" style="padding: 18px;" >
+    <button type="button" class="menu-toggle"><i class="fa fa-bars"></i></button>
+    <ul class="menu">
+        <li class="menu-item {% if request.path == '/' %}current-menu-item{% endif %}"><a href="{% url 'home' %}">Juhu</a></li>
+        <li class="menu-item {% if request.path == '/rajbhavan/' %}current-menu-item{% endif %}"><a href="{% url 'rajbhavan' %}">Rajbhavan</a></li>
+		<br>
+		
+        
+    </ul> <!-- .menu -->
+
+</div>
+
+	<!-- // dynamic upper part of forcasting// -->
+
+	
+	  
+		
+	
+	<div>
+		
+	  <div class="site-content">
+		<!-- Header and navigation -->
+		<!-- ... -->
+	
+		<div class="forecast-table">
+		  <div class="container">
+			<div class="forecast-container">
+			  <!-- Today's Report -->
+			  <div class="today forecast">
+				<div class="forecast-header">
+				  <div class="day" style="font-size: 24px; font-weight: bold;color: aliceblue;margin-left: 20px">Today's Report</div>
+				</div>
+				<div class="forecast-content">
+				  <div class="location">Thursday</div>
+				  <div class="location" style="font-size: 15px;">15th Feb </div>
+				  <div class="degree">
+					<div class="num" style="font-size: 18px;" id="temperature">Loading...</div>
+					<div class="forecast-icon">
+					  <img src="images\icon-3.svg" alt="" width=70>
+					</div>  
+				  </div>
+				  <span>Wind: {{dict.1.4}}  km/hr</span>
+				  
+				  <span>UV Index:<span id="temperatureCelsius"></span>{{dict.1.9}} mW/m²&nbsp;&nbsp;&nbsp;&nbsp;<span id="temperatureFahrenheit" style="size:0 px ;"></span></span>
+				  <span> &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Heat Index: {{dict.0.9}}  </span>
+				</div>
+			  </div>
+	
+			  <!-- Other Parameters -->
+			  <div class="forecast">
+				<div class="forecast-header">
+				  <div class="day" style="font-size: 24px; font-weight: bold;color:aliceblue;">Other Parameters Values</div>
+				</div>
+				<div class="forecast-content" style="text-align: left; margin-left: 20px;">
+				  <span class="parameter"><strong>Temperature(°C):</strong> <span id="otherTemperature">Loading...</span></span>
+				  <span class="parameter"><strong>Humidity(%):</strong> <span id="humidity">Loading...</span></span>
+				  <span class="parameter"><strong>Solar Radiation(W/m²):</strong> <span id="solarRadiation">Loading...</span></span>
+				  <span class="parameter"><strong>Pressure(hPa):</strong> <span id="pressure">Loading...</span></span>
+				</div>
+			  </div>
+			</div>
+		  </div>
+		</div>
+	
+		<!-- Footer -->
+		<!-- ... -->
+	  </div>   
+	
+	  <script src="js/jquery-1.11.1.min.js"></script>
+	  <script src="js/plugins.js"></script>
+	  <script src="js/app.js"></script>   
+	  
+	  <script>
+		// Dummy data array
+
+		// we need to change this with our variable  arr
+		
+     </script>
+
+	 <script>
+		
+	   const temperature1=  {{ dict.0.5}};
+       const  temperatureFahrenheit1= {{ dict.0.1}};
+       const  otherTemperature1= {{ dict.0.2}};
+	   const humidity1= {{ dict.0.6}};
+       const solarRadiation1=  {{ dict.1.8}};
+       const pressure1= {{ dict.1.0}};
+	   const AQI1={{dict.0.0}};
+	  
+
+		</script>
+		
+		<script>
+    const dummyData = {
+        temperature: temperature1,
+        temperatureFahrenheit:temperatureFahrenheit1,
+        otherTemperature: otherTemperature1,
+        humidity: humidity1,
+        solarRadiation:  (solarRadiation1).toFixed(2),
+        pressure: pressure1,
+		aqi:AQI1
+		
+    };
+
+		 
+
+		
+	
+		// Function to update HTML with dummy data
+		function updateDummyData() {
+		  document.getElementById('temperature').textContent =  'AQI:'+dummyData.aqi ;
+		  document.getElementById('temperatureFahrenheit').textContent = dummyData.temperatureFahrenheit;
+		  document.getElementById('otherTemperature').textContent = dummyData.temperature;
+		  document.getElementById('humidity').textContent = dummyData.humidity;
+		  document.getElementById('solarRadiation').textContent = dummyData.solarRadiation;
+		  document.getElementById('pressure').textContent = dummyData.pressure;
+		}
+	
+		// Call the function to update HTML with dummy data
+		updateDummyData();
+	  </script>
+	</div>
+	
+
+
+
+	
+	<!-- // dynamic lower part of forcasting// -->
+
+	<div class="forecast-table">
+		<div class="container">
+		  <div class="forecast-container" id="forecastContainer">
+			<!-- Forecast data will be dynamically added here -->
+		  </div>
+		</div>
+	  </div>
+	
+	  <script>
+		
+		var forecastData = [
+                                 
+		  { day: "Monday", icon:  "{% static 'images/icons/icon-3.svg' %}", degree: {{ Temp.0 }},humidity:{{Hum.0}}, AQI:{{AQI.0}},HI:{{HI.0}}},
+		  { day: "Tuesday", icon:"{% static 'images/icons/icon-3.svg' %}", degree: {{ Temp.1 }} ,humidity:{{Hum.1}} ,AQI:{{AQI.1}},HI:{{HI.1}}},
+		  { day: "Wednesday", icon: "{% static 'images/icons/icon-3.svg' %}", degree: {{ Temp.2 }}  ,humidity:{{Hum.2}} ,AQI:{{AQI.2}},HI:{{HI.2}}},
+		  { day: "Thursday", icon: "{% static 'images/icons/icon-3.svg' %}", degree: {{ Temp.3 }}  ,humidity:{{Hum.3}},AQI:{{AQI.3}},HI:{{HI.3}}},
+		  { day: "Friday", icon:"{% static 'images/icons/icon-3.svg' %}", degree: {{ Temp.4 }} ,humidity:{{Hum.4}},AQI:{{AQI.4}},HI:{{HI.4}}},
+		  { day: "Saturday", icon: "{% static 'images/icons/icon-3.svg' %}", degree: {{ Temp.5 }} ,humidity:{{Hum.5}},AQI:{{AQI.5}},HI:{{HI.5}}},
+		  { day: "Sunday", icon: "{% static 'images/icons/icon-3.svg' %}", degree:   {{ Temp.6 }},humidity:{{Hum.6}},AQI:{{AQI.6}},HI:{{HI.6}}}
+		];
+	
+		
+
+
+		function generateForecastHTML(data) {
+		  var html = "";
+		  data.forEach(function(day) {
+			html += `
+			  <div class="forecast">
+				<div class="forecast-header">
+				  <div class="day">${day.day}</div>
+				</div>
+				<div class="forecast-content">
+				<img src= ${day.icon} >
+				<br>
+				<br>
+				<div class="degree" style="color: rgb(191, 193, 200);">${day.AQI} ppm</div>
+				<br>
+				  <div class="degree" style="color: rgb(191, 193, 200);">${day.degree}<sup>o</sup>C</div>
+				  <br>
+				  <div class="degree" style="color: rgb(191, 193, 200);">${day.humidity} %</div>
+				  <br>
+				 
+			         
+				
+				 
+				</div>
+			  </div>
+			
+			`;
+		  });
+	
+		  return html;
+		}
+	
+		var forecastContainer = document.getElementById("forecastContainer");
+		forecastContainer.innerHTML = generateForecastHTML(forecastData);
+	  </script>
+	
+	 
+	  <script src="js/jquery-1.11.1.min.js"></script>
+	  <script src="js/plugins.js"></script>
+	  <script src="js/app.js"></script>
+	</body>
+
+
+
+		<script src="js/jquery-1.11.1.min.js"></script>
+		<script src="js/plugins.js"></script>
+		<script src="js/app.js"></script>
+
+
+
+		<script>
+			// JavaScript to handle button click event
+			document.querySelector('.button').addEventListener('click', function() {
+				// Replace 'your-destination-page.html' with the URL of the destination page on your site
+				window.location.href = 'your-destination-page.html';
+			});
+			</script>
+
+  <br><br>
+     {% include 'footer.html' %}
+		
+	</body>
+
+</html>

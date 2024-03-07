@@ -1,0 +1,320 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1">
+		
+		<title>SeaBreeze</title>
+
+		<!-- Loading third party fonts -->
+		<link href="http://fonts.googleapis.com/css?family=Roboto:300,400,700|" rel="stylesheet" type="text/css">
+		<link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+
+
+		<!-- Loading main css file -->
+		<link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+		
+		<!--[if lt IE 9]>
+		<script src="js/ie-support/html5.js"></script>
+		<script src="js/ie-support/respond.js"></script>
+		<![endif]-->
+
+		<!-- content of graph -->
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		
+		<!-- Include Plotly library -->
+		<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+
+		<style>
+			.button-container {
+				text-align: right;
+				position: absolute;
+				top: 10px;
+				right: 10px;
+			}
+	
+		   
+		</style>
+  
+
+
+	</head>
+
+
+	<body>
+		{% include 'menu.html' %}
+		<div class="site-content">
+			 <!-- .site-header -->
+
+			<hr>
+			<div class="forecast-table"  style="margin-top: 15px; margin-bottom: 0px;">
+				<div class="container">
+					<div class="forecast-container">
+						<div class="today forecast">
+							<div class="forecast-header">
+								<div class="day"> </div>
+								<div class="date"> </div>
+							</div> <!-- .forecast-header -->
+							<div class="forecast-content">
+								<div class="location">Mumbai</div>
+								<div class="degree">
+									<div class="num">Today</div>
+									<div class="forecast-icon">
+										<img src="images/icons/icon-1.svg" alt="" width=90>
+									</div>	
+								</div>
+								<span><img src="images/icon-umberella.png" alt=""></span>
+								<span><img src="images/icon-wind.png" alt=""></span>
+								<span><img src="images/icon-compass.png" alt=""></span> 
+							</div> 
+						</div>
+						<div class="forecast">
+							<div class="forecast-header">
+								<div class="day">AQI</div>
+							</div> <!-- .forecast-header -->
+							<div class="forecast-content">
+								<div class="forecast-icon">
+									<img src="images/icons/icon-3.svg" alt="" width=48>
+								</div>
+								<div class="degree">483</div>
+								<small><sup>o</sup></small>
+							</div>
+						</div>
+						<div class="forecast">
+							<div class="forecast-header">
+								<div class="day">Temp</div>
+							</div> <!-- .forecast-header -->
+							<div class="forecast-content">
+								<div class="forecast-icon">
+									<img src="images/icons/icon-5.svg" alt="" width=48>
+								</div>
+								<div class="degree">23<sup>o</sup>C</div>
+								<small></small>
+							</div>
+						</div>
+						<div class="forecast">
+							<div class="forecast-header">
+								<div class="day">Humidity</div>
+							</div> <!-- .forecast-header -->
+							<div class="forecast-content">
+								<div class="forecast-icon">
+									<img src="images/icons/icon-7.svg" alt="" width=48>
+								</div>
+								<div class="degree">243</div>
+								<small></small>
+							</div>
+						</div>
+						<div class="forecast">
+							<div class="forecast-header">
+								<div class="day">Solar Radiation</div>
+							</div> <!-- .forecast-header -->
+							<div class="forecast-content">
+								<div class="forecast-icon">
+									<img src="images/icons/icon-12.svg" alt="" width=48>
+								</div>
+								<div class="degree">89</div>
+								<small></small>
+							</div>
+						</div>
+						<div class="forecast">
+							<div class="forecast-header">
+								<div class="day">Pressure</div>
+							</div> <!-- .forecast-header -->
+							<div class="forecast-content">
+								<div class="forecast-icon">
+									<img src="images/icons/icon-13.svg" alt="" width=48>
+								</div>
+								<div class="degree">987</div>
+								<small></small>
+							</div>
+						</div>
+						<div class="forecast">
+							<div class="forecast-header">
+								<div class="day">PM1</div>
+							</div> <!-- .forecast-header -->
+							<div class="forecast-content">
+								<div class="forecast-icon">
+									<img src="images/icons/icon-14.svg" alt="" width=48>
+								</div>
+								<div class="degree">23<sup>o</sup>C</div>
+								<small>></small>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+			<div class="forecast-table">
+				<div class="container">
+					<div class="forecast-container">
+						<div class="today forecast">
+							<div class="forecast-header">
+								<div class="day">Monday</div>
+								<div class="date">18 Sept</div>
+							</div> <!-- .forecast-header -->
+							<div class="forecast-content">
+								<div class="location">Mumbai</div>
+								<div class="degree">
+									<div class="num">23<sup>o</sup>C</div>
+									<div class="forecast-icon">
+										<img src="images/icons/icon-1.svg" alt="" width=90>
+									</div>	
+								</div>
+								<span><img src="images/icon-umberella.png" alt="">20%</span>
+								<span><img src="images/icon-wind.png" alt="">18km/h</span>
+								<span><img src="images/icon-compass.png" alt="">East</span>
+							</div>
+						</div>
+						<div class="forecast">
+							<div class="forecast-header">
+								<div class="day">Tuesday</div>
+							</div> <!-- .forecast-header -->
+							<div class="forecast-content">
+								<div class="forecast-icon">
+									<img src="images/icons/icon-3.svg" alt="" width=48>
+								</div>
+								<div class="degree">23<sup>o</sup>C</div>
+								<small>18<sup>o</sup></small>
+							</div>
+						</div>
+						<div class="forecast">
+							<div class="forecast-header">
+								<div class="day">Wednesday</div>
+							</div> <!-- .forecast-header -->
+							<div class="forecast-content">
+								<div class="forecast-icon">
+									<img src="images/icons/icon-5.svg" alt="" width=48>
+								</div>
+								<div class="degree">23<sup>o</sup>C</div>
+								<small>18<sup>o</sup></small>
+							</div>
+						</div>
+						<div class="forecast">
+							<div class="forecast-header">
+								<div class="day">Thursday</div>
+							</div> <!-- .forecast-header -->
+							<div class="forecast-content">
+								<div class="forecast-icon">
+									<img src="images/icons/icon-7.svg" alt="" width=48>
+								</div>
+								<div class="degree">23<sup>o</sup>C</div>
+								<small>18<sup>o</sup></small>
+							</div>
+						</div>
+						<div class="forecast">
+							<div class="forecast-header">
+								<div class="day">Friday</div>
+							</div> <!-- .forecast-header -->
+							<div class="forecast-content">
+								<div class="forecast-icon">
+									<img src="images/icons/icon-12.svg" alt="" width=48>
+								</div>
+								<div class="degree">23<sup>o</sup>C</div>
+								<small>18<sup>o</sup></small>
+							</div>
+						</div>
+						<div class="forecast">
+							<div class="forecast-header">
+								<div class="day">Saturday</div>
+							</div> <!-- .forecast-header -->
+							<div class="forecast-content">
+								<div class="forecast-icon">
+									<img src="images/icons/icon-13.svg" alt="" width=48>
+								</div>
+								<div class="degree">23<sup>o</sup>C</div>
+								<small>18<sup>o</sup></small>
+							</div>
+						</div>
+						<div class="forecast">
+							<div class="forecast-header">
+								<div class="day">Sunday</div>
+							</div> <!-- .forecast-header -->
+							<div class="forecast-content">
+								<div class="forecast-icon">
+									<img src="images/icons/icon-14.svg" alt="" width=48>
+								</div>
+								<div class="degree">23<sup>o</sup>C</div>
+								<small>18<sup>o</sup></small>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		<!-- //////////////////////// adding graph ka code	 -->
+
+
+        {% include 'graphdummy.html' %}
+		
+
+
+
+
+			
+
+				<div class="fullwidth-block">
+					<div class="container">
+						<div class="row justify-content-center align-items-center text-center">
+							<div class="col-md-8">
+						<!-- <div class="row"> -->
+							<!-- <div class="col-md-4"> -->
+								<!-- <h2 class="section-title">Weather Analysis Data Paramters Available</h2> -->
+								
+								<br>
+								<!-- Add a button to navigate to another page -->
+
+<script>
+	// JavaScript to handle button click event
+	document.querySelector('.button').addEventListener('click', function() {
+		// Replace 'your-destination-page.html' with the URL of the destination page on your site
+		window.location.href = 'your-destination-page.html';
+	});
+	</script>
+							<!-- <div class="col-md-4">
+								<h2 class="section-title">Weather analyssis</h2>
+								<ul class="arrow-list">
+									<li><a href="#">Accusantium doloremque laudantium rem aperiam</a></li>
+									<li><a href="#">Eaque ipsa quae ab illo inventore veritatis quasi</a></li>
+									<li><a href="#">Architecto beatae vitae dicta sunt explicabo</a></li>
+									<li><a href="#">Nemo enim ipsam voluptatem quia voluptas</a></li>
+									<li><a href="#">Aspernatur aut odit aut fugit, sed quia consequuntur</a></li>
+									<li><a href="#">Magni dolores eos qui ratione voluptatem sequi</a></li>
+									<li><a href="#">Neque porro quisquam est qui dolorem ipsum quia</a></li>
+								</ul>
+							</div> -->
+							<!-- <div class="col-md-4">
+								<h2 class="section-title">Awesome Photos</h2>
+			 					<div class="photo-grid">
+									<a href="#"><img src="images/thumb-1.jpg" alt="#"></a>
+									<a href="#"><img src="images/thumb-2.jpg" alt="#"></a>
+									<a href="#"><img src="images/thumb-3.jpg" alt="#"></a>
+									<a href="#"><img src="images/thumb-4.jpg" alt="#"></a>
+									<a href="#"><img src="images/thumb-5.jpg" alt="#"></a>
+									<a href="#"><img src="images/thumb-6.jpg" alt="#"></a>
+									<a href="#"><img src="images/thumb-7.jpg" alt="#"></a>
+									<a href="#"><img src="images/thumb-8.jpg" alt="#"></a>
+									<a href="#"><img src="images/thumb-9.jpg" alt="#"></a>
+								</div>
+							</div> -->
+						</div>
+					</div>
+				</div>
+			</main> <!-- .main-content -->
+
+			{% include 'footer.html' %}
+			<!-- <p class="colophon">Copyright 2023 SeaBreeze. All rights reserved</p> -->
+		</div>
+		
+		<script src="js/jquery-1.11.1.min.js"></script>
+		<script src="js/plugins.js"></script>
+		<script src="js/app.js"></script>
+		
+	</body>
+
+</html>
